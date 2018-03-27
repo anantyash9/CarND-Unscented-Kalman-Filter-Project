@@ -87,6 +87,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package)
 	{
 		cout << "88" <<endl;
 		previous_timestamp_ = meas_package.timestamp_;
+		cout << "90" <<endl;
 		if( meas_package.sensor_type_ == MeasurementPackage::RADAR ) 
 		{
 			cout << "92" <<endl;
@@ -97,7 +98,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package)
 			float px = ro*cos(phi);
 			float py = ro*sin(phi);
 			cout << "99" <<endl;	
-			x_ << px, py ,0, 0;
+			x_ << px, py ,0, 0, 0;
 			cout << "101" <<endl;
 
 		}
@@ -105,10 +106,13 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package)
 		else if( meas_package.sensor_type_ == MeasurementPackage::LASER ) 
 		{
       // Initialize state
+			cout << "109" <<endl;
 			float px = meas_package.raw_measurements_[0];
+			cout << "111" <<endl;
 			float py = meas_package.raw_measurements_[1];
-			x_ << px, py,0,0;
-			cout << "108" <<endl;
+			cout << "88" <<endl;
+			x_ << px, py,0,0, 0;
+			cout << "115" <<endl;
 		}
 		P_.fill(0);
 		P_(0,0) = 1;
