@@ -12,6 +12,7 @@ using std::vector;
  * This is scaffolding, do not modify
  */
 UKF::UKF() {
+	cout << "Initialize" <<endl;
   // if this is false, laser measurements will be ignored (except during init)
 	use_laser_ = true;
 
@@ -62,6 +63,8 @@ UKF::UKF() {
 //create matrix with predicted sigma points as columns
   	MatrixXd Xsig_pred_ = MatrixXd(n_x_, 2 * n_aug_ + 1);
 
+  	cout << "Initialized" <<endl;
+
 }
 
 UKF::~UKF() {}
@@ -82,6 +85,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package)
 
 	if (!is_initialized_)
 	{
+		cout << "88" <<endl;
 		previous_timestamp_ = meas_package.timestamp_;
 		if( meas_package.sensor_type_ == MeasurementPackage::RADAR ) 
 		{
@@ -91,6 +95,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package)
 			float px = ro*cos(phi);
 			float py = ro*sin(phi);	
 			x_ << px, py ,0, 0;
+			cout << "98" <<endl;
 
 		}
 
@@ -100,6 +105,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package)
 			float px = meas_package.raw_measurements_[0];
 			float py = meas_package.raw_measurements_[1];
 			x_ << px, py,0,0;
+			cout << "108" <<endl;
 		}
 		P_.fill(0);
 		P_(0,0) = 1;
@@ -109,20 +115,24 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package)
 		P_(4,4) = 1000;
 
 		is_initialized_ = true;
+		cout << "118" <<endl;
 		return;
+
 	}
 	double dt = ( meas_package.timestamp_ - previous_timestamp_ )/1000000.0;
 	previous_timestamp_ = meas_package.timestamp_;
-
+	cout << "124" <<endl;
 	Prediction( dt );
-
+	cout << "126" <<endl;
 	if( meas_package.sensor_type_ == MeasurementPackage::RADAR ) 
   {
     UpdateRadar( meas_package );
+    cout << "130" <<endl;
   } 
   else 
   {
     UpdateLidar( meas_package );
+    cout << "135" <<endl;
   }
 }
 
