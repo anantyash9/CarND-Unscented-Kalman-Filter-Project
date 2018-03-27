@@ -89,13 +89,16 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package)
 		previous_timestamp_ = meas_package.timestamp_;
 		if( meas_package.sensor_type_ == MeasurementPackage::RADAR ) 
 		{
+			cout << "92" <<endl;
       // Convert radar from polar to cartesian coordinates and initialize state.
 			float ro = meas_package.raw_measurements_[0];
 			float phi = meas_package.raw_measurements_[1];
+			cout << "96" <<endl;
 			float px = ro*cos(phi);
-			float py = ro*sin(phi);	
+			float py = ro*sin(phi);
+			cout << "99" <<endl;	
 			x_ << px, py ,0, 0;
-			cout << "98" <<endl;
+			cout << "101" <<endl;
 
 		}
 
