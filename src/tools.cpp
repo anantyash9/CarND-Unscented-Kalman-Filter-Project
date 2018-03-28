@@ -15,7 +15,7 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
   TODO:
     * Calculate the RMSE here.
   */
-
+	cout << "tools 18" <<endl;
   float t = estimations.size(); // Current timestep index
 
   // check the validity of the inputs
@@ -63,6 +63,6 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
          << rmse(2) << "  " << rmse(3) << endl
          << " currently exceeds tolerances of "
          << ".09, .10, .40, .30" << endl;
-
+   cout << "tools 66" <<endl;      
   return rmse;	
 }
