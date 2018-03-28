@@ -185,6 +185,7 @@ void UKF::Prediction(double delta_t) {
     //predict sigma points
   for (int i = 0; i< 2*n_aug_+1; i++)
   {
+  	cout << "188" <<endl;
     //extract values for better readability
     double p_x = Xsig_aug(0,i);
     double p_y = Xsig_aug(1,i);
@@ -193,7 +194,7 @@ void UKF::Prediction(double delta_t) {
     double yawd = Xsig_aug(4,i);
     double nu_a = Xsig_aug(5,i);
     double nu_yawdd = Xsig_aug(6,i);
-
+    cout << "197" <<endl;
     //predicted state values
     double px_p, py_p;
 
@@ -206,27 +207,28 @@ void UKF::Prediction(double delta_t) {
         px_p = p_x + v*delta_t*cos(yaw);
         py_p = p_y + v*delta_t*sin(yaw);
     }
-
+    cout << "210" <<endl;
     double v_p = v;
     double yaw_p = yaw + yawd*delta_t;
     double yawd_p = yawd;
-
+    cout << "214" <<endl;
     //add noise
     px_p = px_p + 0.5*nu_a*delta_t*delta_t * cos(yaw);
     py_p = py_p + 0.5*nu_a*delta_t*delta_t * sin(yaw);
     v_p = v_p + nu_a*delta_t;
-
+    cout << "219" <<endl;
     yaw_p = yaw_p + 0.5*nu_yawdd*delta_t*delta_t;
     yawd_p = yawd_p + nu_yawdd*delta_t;
-
+    cout << "222" <<endl;
     //write predicted sigma point into right column
     Xsig_pred_(0,i) = px_p;
     Xsig_pred_(1,i) = py_p;
     Xsig_pred_(2,i) = v_p;
     Xsig_pred_(3,i) = yaw_p;
     Xsig_pred_(4,i) = yawd_p;
+    cout << "229" <<endl;
 }
-cout << "229" <<endl;
+cout << "231" <<endl;
 
   // set weights
   weights_ = VectorXd( 2*n_aug_+1 );
