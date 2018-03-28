@@ -12,11 +12,6 @@ public:
   /**
   * Constructor.
   */
-  VectorXd mse;
-  VectorXd lastmse;
-  VectorXd residual;
-  VectorXd kahanerror;
-  VectorXd rmse;
   Tools();
 
   /**
